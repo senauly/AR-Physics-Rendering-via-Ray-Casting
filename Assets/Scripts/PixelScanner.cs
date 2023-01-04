@@ -57,6 +57,16 @@ public class PixelScanner : MonoBehaviour
                         // Add the diffuse reflection to the final color
                         finalColor += diffuseReflection;
 
+                        //specular reflection
+                        Vector3 viewDirection = Camera.main.transform.position - hit.point;
+                        viewDirection.Normalize();
+                        Vector3 halfVector = (lightDirection + viewDirection) / 2;
+                        halfVector.Normalize();
+                        
+                        float specularFactor = Mathf.Pow(Mathf.Max(0, Vector3.Dot(halfVector, hit.normal)), 32);
+                        Color specularReflection = specularFactor * light.color;
+                        finalColor += specularReflection*0.6f;
+
                     }
 
                     // Set the pixel color to the final color
