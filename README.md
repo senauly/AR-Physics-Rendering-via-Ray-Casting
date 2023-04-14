@@ -7,7 +7,12 @@ I developed a  simple  renderer  using  ray  casting following this rules:
  ## Simple Renderer Algorithm
 
 The script generates a texture image by casting rays from each pixel in the image towards the game world and calculating the color of each pixel based on the Phong lighting model.
+
 The Phong lighting model takes into account the material's diffuse color (color of the material under diffuse), the specular color (color of the highlights on the material), and the ambient light in the scene (diffuse light that is present everywhere in the scene).
+
+Create shadow function is called for each pixel that is hit by a ray. This function sends a ray from the point of the hit towards each light in the scene. If the ray does not hit the light, it means that the pixel is in shadow and it calculates a shadow color based on the intensity of the light and then sets the pixel color to the shadow color.
+
+After adding the shadows and applying the changes to the RawImage, it saves an image of the result.
 
 ## Results
 
